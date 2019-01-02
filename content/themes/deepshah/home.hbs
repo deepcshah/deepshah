@@ -18,6 +18,8 @@ into the {body} of the default.hbs template --}}
         <p>🎙 <a href="https://shoptalkshow.com/episodes/221-elea-chang-deep-shah/" target="_blank">Shop Talk Ep. 221</a></p>
         <p>🗣 <a href="https://2016.affectconf.com" target="_blank">Affect Conf 2016 Speaker</a></p>
         <p>🎙 <a href="http://www.deepthoughts.fm" target="_blank">Deep Thoughts FM</a></p>
+        <p>🥼 <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4093830/" target="_blank">Obesity Increases the Risk of Chest Wall Pain from Thoracic Stereotactic Body Radiation Therapy</a></p>
+        <p>💽 <a href="https://soundcloud.com/deepcshah/sets" target="_blank">Sets</a></p>
         <form
           action="https://buttondown.email/api/emails/embed-subscribe/deep"
           method="post"
@@ -32,14 +34,28 @@ into the {body} of the default.hbs template --}}
         </form>
         <p><span class="hands-wrapper"><a href="mailto:hi@deepshah.com"><span class="hands">👋🏽</span> Say hi@deepshah.com</a></span></p>
     </div>
-    <div class="inner">
-        <div class="post-feed">
+    <div class="inner row">
+        {{#get "posts" limit="5" include="tags"}}
+        <div class="post-feed column">
             {{#foreach posts}}
-
+                {{#has tag="reflections"}}
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
                 {{> "post-card"}}
-
+                {{/has}}
             {{/foreach}}
+            <p class="read-more"><a href="/">View More Reflections</a></p>
         </div>
+        {{/get}}
+        {{#get "posts" limit="5" include="tags"}}
+        <div class="post-feed column">
+            {{#foreach posts}}
+                {{#has tag="stories"}}
+                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{> "post-card-story"}}
+                {{/has}}
+            {{/foreach}}
+            <p class="read-more"><a href="/">View More Stories</a></p>
+        </div>
+        {{/get}}
     </div>
 </main>

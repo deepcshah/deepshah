@@ -16,15 +16,9 @@ It's a good idea to keep this template as minimal as possible in terms of both f
 <body class="error-template">
     <div class="site-wrapper">
 
-        <header class="site-header outer {{#if feature_image}}" style="background-image: url({{feature_image}}){{else}}no-cover{{/if}}">
+        {{> header background=@blog.cover_image}} {{!--Special header.hbs partial to generate the <header> tag--}}
             <div class="inner">
-                <nav class="site-nav-center">
-                    {{#if @blog.logo}}
-                        <a class="site-nav-logo" href="{{@blog.url}}"><img src="{{img_url @blog.logo size="xs"}}" alt="{{@blog.title}}" /></a>
-                    {{else}}
-                        <a class="site-nav-logo" href="{{@blog.url}}">{{@blog.title}}</a>
-                    {{/if}}
-                </nav>
+                {{> "site-nav"}}
             </div>
         </header>
 
@@ -39,17 +33,30 @@ It's a good idea to keep this template as minimal as possible in terms of both f
             </div>
         </main>
 
-        {{#get "posts" limit="3"}}
-        <aside class="outer">
-            <div class="inner">
-                <div class="post-feed">
-                    {{#foreach posts}}
-                        {{> "post-card"}}
-                    {{/foreach}}
-                </div>
-            </div>
-        </aside>
-        {{/get}}
+        <div class="inner row">
+          {{#get "posts" limit="5" include="tags"}}
+          <div class="post-feed column">
+              {{#foreach posts}}
+                  {{#has tag="reflections"}}
+                  {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                  {{> "post-card"}}
+                  {{/has}}
+              {{/foreach}}
+              <p class="read-more"><a href="/">View More Reflections</a></p>
+          </div>
+          {{/get}}
+          {{#get "posts" limit="5" include="tags"}}
+          <div class="post-feed column">
+              {{#foreach posts}}
+                  {{#has tag="stories"}}
+                  {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                  {{> "post-card-story"}}
+                  {{/has}}
+              {{/foreach}}
+              <p class="read-more"><a href="/">View More Stories</a></p>
+          </div>
+          {{/get}}
+      </div>
 
     </div>
 </body>

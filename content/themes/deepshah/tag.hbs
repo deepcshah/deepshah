@@ -25,7 +25,11 @@
         <div class="post-feed">
             {{#foreach posts}}
                 {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{#has tag="stories"}}
+                {{> "post-card-story"}}
+                {{else}}
                 {{> "post-card"}}
+                {{/has}}
             {{/foreach}}
         </div>
     </div>
