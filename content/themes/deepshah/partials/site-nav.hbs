@@ -1,0 +1,27 @@
+
+  {{#is "home, about"}}
+  <nav class="site-nav home-nav">
+  {{else}}
+  <nav class="site-nav">
+  {{/is}}
+    <div class="site-nav-left">
+      <h2 class="js-tilt" data-tilt data-tilt-speed="300" data-tilt-max="25" data-tilt-perspective="500">
+        <a href="{{@blog.url}}">
+          <span class="header-deep header-deep-one">દીપ શાહ</span>
+          <span class="header-deep header-deep-two">દીપ શાહ</span>
+          <span class="header-deep header-deep-three">દીપ શાહ</span>
+        </a>
+      </h2>
+    </div>
+    <div class="site-nav-right">
+    {{#if @blog.navigation}}
+        {{navigation}}
+    {{/if}}
+    {{#if @labs.subscribers}}
+        <a class="subscribe-button" href="#subscribe">Subscribe</a>
+    {{else}}
+        <a class="rss-button" href="https://feedly.com/i/subscription/feed/{{@blog.url}}/rss/" title="RSS" target="_blank" rel="noopener">{{> "icons/rss"}}</a>
+    {{/if}}
+    </div>
+  </nav>
+

@@ -1,0 +1,45 @@
+{{!< default}}
+{{!-- The tag above means: insert everything in this file
+into the {body} of the default.hbs template --}}
+
+{{> header background=@blog.cover_image}} {{!--Special header.hbs partial to generate the <header> tag--}}
+    <div class="inner">
+        {{> "site-nav"}}
+    </div>
+</header>
+
+<main id="site-main" class="site-main outer">
+    <div class="inner home">
+        <h2>Hi! My name is Deep.</h2>
+        <h3>This is where I share my reflections, adventures, and ideas.</h3>
+        <p>👨🏾‍🦱 <a href="{{@blog.url}}/about">About Me &rarr;</a></p>
+        <p>🌱 <a href="http://mongodb.design" target="_blank">MongoDB Design</a></p>
+        <p>🗣 <a href="https://www.meetup.com/NYC-Design-Systems-Coalition/events/254103852/" target="_blank">Design Systems NYC Speaker</a></p>
+        <p>🎙 <a href="https://shoptalkshow.com/episodes/221-elea-chang-deep-shah/" target="_blank">Shop Talk Ep. 221</a></p>
+        <p>🗣 <a href="https://2016.affectconf.com" target="_blank">Affect Conf 2016 Speaker</a></p>
+        <p>🎙 <a href="http://www.deepthoughts.fm" target="_blank">Deep Thoughts FM</a></p>
+        <form
+          action="https://buttondown.email/api/emails/embed-subscribe/deep"
+          method="post"
+          target="popupwindow"
+          onsubmit="window.open('https://buttondown.email/deep', 'popupwindow')"
+          class="embeddable-buttondown-form subscribe-form small"
+        >
+          <label for="bd-email">✉️ Get my thoughts a few times a year</label>
+          <input class="subscribe-email small" type="email" name="email" id="bd-email" placeholder="Enter your email">
+          <input type="hidden" value="1" name="embed"/>
+          <input class="subscribe-button small" type="submit" value="Subscribe" />
+        </form>
+        <p><span class="hands-wrapper"><a href="mailto:hi@deepshah.com"><span class="hands">👋🏽</span> Say hi@deepshah.com</a></span></p>
+    </div>
+    <div class="inner">
+        <div class="post-feed">
+            {{#foreach posts}}
+
+                {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{> "post-card"}}
+
+            {{/foreach}}
+        </div>
+    </div>
+</main>
